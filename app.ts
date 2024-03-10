@@ -15,9 +15,9 @@ app.use(cors());
 app.use("/api/user", userRoutes);
 app.use('/api/movie', movieRoutes);
 
-app.listen(3000,()=> {
-    console.log("Listening to 3000",);
-    
+const port:string = process.env.PORT
+app.listen(process.env.PORT,()=> {
+    console.log(`Listening to PORT ${port}`);
 })
 
 mongoose.connect(process.env.MONGO_URL)
