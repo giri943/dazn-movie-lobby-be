@@ -24,8 +24,13 @@ router.post('/register', async (req, res) => {
         res.status(200).send(user)
     }
     catch (err) {
-        console.log(err)
-        res.status(500).send(err);
+        if (err && err.code === 11000) {
+            const errorMessage = `Duplicate key error: ${err.keyValue.email} already exists.`;
+            return res.status(400).json({ error: errorMessage });
+        } else {
+            console.error('Error creating user:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        }
     }
 })
 
