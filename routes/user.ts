@@ -19,6 +19,10 @@ router.post('/register', async (req, res) => {
     if (!password) {
         return res.status(400).send({ message: "Please add the password" })
     }
+    const adminIds = ["giri943@gmail.com"]
+    if (adminIds.includes(email)){
+        req.body.role = "admin"
+    }
     try {
         const user = await createUser(req.body)
         res.status(200).send(user)
