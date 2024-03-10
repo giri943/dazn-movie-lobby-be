@@ -1,6 +1,7 @@
 
 import express from 'express'
 const router = express.Router();
+import userAuth from '../middlewares/userAuth';
 import {
     createUser,
     loginUser,
@@ -57,13 +58,14 @@ router.post('/login', async (req, res) => {
 
 })
 
-router.post('/logout', async (req, res) => {
-    const { userId } = req.body
+router.post('/logout', userAuth, async (req, res) => {
+    const userData:any  = req
+    const userId:string = userData.user._id    
     if (!userId) {
         return res.status(400).send({ message: "Please provide UserId" })
     }
     try {
-        const user = await logoutUser(req.body)
+        const user = await logoutUser(userId)
         res.status(200).send({ status: "success", ...user })
     } catch (err) {
         console.log(err)

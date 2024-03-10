@@ -48,10 +48,10 @@ export const loginUser = (userData: any): Promise<{ user: any }> => {
     })
 }
 
-export const logoutUser = (userData: any): Promise<{ user: any }> => {
+export const logoutUser = (userId: string): Promise<{ user: any }> => {
     return new Promise(async (resolve, reject) => {
         try {
-            const user = await User.findById({ _id: userData.userId }).exec()
+            const user = await User.findById({ _id:userId }).exec()
             if (!user) {
                 reject("No user found")
             }
