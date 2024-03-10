@@ -1,10 +1,11 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 // Define the interface for the user document to include custom methods
 interface UserDocument extends Document {
+    _id: string; 
     userName: string;
     email: string;
     password: string;
@@ -12,6 +13,9 @@ interface UserDocument extends Document {
     tokens: { token: string }[];
     generateAuthToken(): Promise<string>;
     getPublicProfile(): any;
+    save: () => Promise<UserDocument>;
+    toObject: () => any;
+    isModified(path?: string | string[]): boolean;
 }
 
 const userSchema = new mongoose.Schema({
