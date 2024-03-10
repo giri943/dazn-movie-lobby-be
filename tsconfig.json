@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "baseUrl": "./",
+    "outDir": "dist",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true 
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules"]
+}
