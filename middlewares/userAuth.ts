@@ -14,8 +14,6 @@ const userAuth = async (req: CustomRequest, res: Response, next: NextFunction) =
       throw new Error();
     }
     const decoded: any = jwt.verify(token, process.env.JWT_SALT);  
-    console.log(decoded);
-
     const user = await User.findOne({
       _id: decoded._id,
       "tokens.token": token,
