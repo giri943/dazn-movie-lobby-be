@@ -49,3 +49,21 @@ export const deleteMovie = (movieId:string): Promise<{ message: string}> => {
         }
     });
 };
+
+export const searchAllMovies = async (query: string): Promise<{ movies: any[] }> => {
+    if (typeof query !== 'string') {
+        throw new Error('Query parameter must be a string');
+    }
+    try {
+        const movies = await Movie.find({
+            $or: [
+                { title: { $regex: query, $options: 'i' } }, 
+                { genre: { $regex: query, $options: 'i' } } 
+            ]
+        }).sort({ createdAt: -1 }).exec();
+
+        return { movies };
+    } catch (error) {
+        throw new Error("Movie search failed: " + error.message);
+    }
+};

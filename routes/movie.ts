@@ -4,7 +4,8 @@ import {
     createMovie,
     updateMovie,
     getAllMovies,
-    deleteMovie
+    deleteMovie,
+    searchAllMovies
 } from "../controllers/Movie";
 
 
@@ -63,6 +64,16 @@ router.put('/updateMovie/:movieId', adminAuth, async (req, res) => {
 router.get('/movies', async (req, res) => {
     try {
         const movie = await getAllMovies()
+        res.status(200).send({ message: "success", ...movie })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ status: "failed", error })
+    }
+})
+router.get('/search', async (req, res) => {
+    const query:string | undefined = req.query.q as string | undefined;    
+    try {
+        const movie = await searchAllMovies(query)
         res.status(200).send({ message: "success", ...movie })
     } catch (error) {
         console.log(error);
