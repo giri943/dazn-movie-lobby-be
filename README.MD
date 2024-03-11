@@ -33,3 +33,15 @@
     # Run with production Credentials
     $ npm run prod
     ```
+
+## Test Case Instructions
+
+1. Checkout to branch feature/test-cases
+
+2. Install the tests dependencies.
+
+    $ npm install
+3. Run the tests using the following command:
+
+    $ npm run test
+

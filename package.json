@@ -4,20 +4,25 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "env-cmd -f ./config/dev.env jest",
     "start": "env-cmd -f ./config/prod.env node app.ts",
     "dev": "env-cmd -f ./config/dev.env nodemon app.ts"
   },
   "author": "Girish Soman",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
-    "@types/mongoose": "^5.11.97",
-    "@types/bcrypt": "^5.0.2",
+    "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.6",
+    "@types/mongoose": "^5.11.97",
+    "@types/supertest": "^6.0.2",
     "@types/validator": "^13.11.9",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   },
